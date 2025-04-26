@@ -1,12 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html {
-  font-family: "Open Sans", sans-serif;
-  background: #0d0d0d;
+:root {
+  --color-gold: #fdc500;
+  --color-charcoal: #0d0d0d;
+  --color-dark-gray: #1a1a1a;
+  --color-light-gray: #b3b3b3;
+  --color-teal: #007ea7;
+  --color-dark-blue: #00296b;
+}
+
+body {
+  margin: 0;
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-charcoal);
+  color: white;
 }
 
 h1,
@@ -14,6 +29,124 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.font-montserrat {
   font-family: "Montserrat", sans-serif;
+}
+
+.font-open-sans {
+  font-family: "Open Sans", sans-serif;
+}
+
+.bg-charcoal {
+  background-color: var(--color-charcoal);
+}
+
+.bg-gold {
+  background-color: var(--color-gold);
+}
+
+.text-light-gray {
+  color: var(--color-light-gray);
+}
+
+/* Global Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-pulse {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+/* Animation delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}
+
+/* Smooth Transitions */
+a,
+button {
+  transition: all 0.3s ease;
 }
