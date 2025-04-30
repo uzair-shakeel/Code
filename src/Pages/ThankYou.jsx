@@ -7,6 +7,11 @@ const ThankYou = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Open URL in a new tab
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="min-h-screen bg-charcoal py-8 sm:py-12 px-4 md:px-8 pt-[95px] md:pt-[110px]">
       <div className="max-w-3xl mx-auto">
@@ -37,58 +42,63 @@ const ThankYou = () => {
             </div>
           </div>
 
-          {/* Outlook Bookings Placeholder */}
+          {/* Outlook Bookings */}
           <div className="mb-8 booking-section">
             <h2 className="text-base sm:text-xl font-montserrat font-bold text-white mb-4 text-center">
               Want to talk sooner? Book a quick preapproval chat.
             </h2>
-            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-4 sm:p-8">
-              <div className="h-64 sm:h-96 bg-[#111] rounded-lg flex flex-col items-center justify-center">
-                <div className="text-center px-4">
-                  <div className="w-16 h-16 mx-auto mb-4 calendar-icon">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <rect
-                        x="3"
-                        y="4"
-                        width="18"
-                        height="18"
-                        rx="2"
-                        stroke="#007EA7"
-                        strokeWidth="2"
-                      />
-                      <path d="M3 10H21" stroke="#007EA7" strokeWidth="2" />
-                      <path
-                        d="M16 2V6"
-                        stroke="#007EA7"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M8 2V6"
-                        stroke="#007EA7"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                      <circle cx="7" cy="14" r="1" fill="#007EA7" />
-                      <circle cx="12" cy="14" r="1" fill="#007EA7" />
-                      <circle cx="17" cy="14" r="1" fill="#007EA7" />
-                      <circle cx="7" cy="18" r="1" fill="#007EA7" />
-                      <circle cx="12" cy="18" r="1" fill="#007EA7" />
-                      <circle cx="17" cy="18" r="1" fill="#007EA7" />
-                    </svg>
-                  </div>
-                  <p className="text-[#B3B3B3] mb-5">
-                    We'll embed your Outlook Bookings calendar here so clients
-                    can schedule appointments directly.
-                  </p>
-                  <span className="inline-block bg-[#007EA7] text-white font-semibold py-2 px-4 rounded-lg">
-                    Calendar Loading...
-                  </span>
+            <div className="bg-[#1A1A1A] border border-gray-800 rounded-lg p-4 sm:p-6">
+              <div className="flex flex-col items-center justify-center p-6">
+                <div className="w-16 h-16 mx-auto mb-4 calendar-icon">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="3"
+                      y="4"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="#007EA7"
+                      strokeWidth="2"
+                    />
+                    <path d="M3 10H21" stroke="#007EA7" strokeWidth="2" />
+                    <path
+                      d="M16 2V6"
+                      stroke="#007EA7"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <path
+                      d="M8 2V6"
+                      stroke="#007EA7"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="7" cy="14" r="1" fill="#007EA7" />
+                    <circle cx="12" cy="14" r="1" fill="#007EA7" />
+                    <circle cx="17" cy="14" r="1" fill="#007EA7" />
+                    <circle cx="7" cy="18" r="1" fill="#007EA7" />
+                    <circle cx="12" cy="18" r="1" fill="#007EA7" />
+                    <circle cx="17" cy="18" r="1" fill="#007EA7" />
+                  </svg>
                 </div>
+                <p className="text-[#B3B3B3] text-center mb-5">
+                  Schedule a quick call to discuss your preapproval options and
+                  get personalized advice.
+                </p>
+                <button
+                  onClick={() =>
+                    openInNewTab(
+                      "https://outlook.office365.com/owa/calendar/RobertBSummersHomeLoanPreapproval@branch777.onmicrosoft.com/bookings/"
+                    )
+                  }
+                  className="w-full sm:w-auto font-medium px-6 py-3 bg-[#007EA7] text-white rounded-lg hover:bg-[#00607D] transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-opacity-50"
+                >
+                  Book a Quick Preapproval Chat
+                </button>
               </div>
             </div>
           </div>
@@ -102,8 +112,11 @@ const ThankYou = () => {
               Upload your financial documents now to get approved faster.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-4 sm:px-6 py-3 border border-white hover:border-[#007EA7] text-white rounded-lg hover:bg-[#007EA7] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-opacity-50">
-                Upload Paystubs or W-2
+              <button
+                onClick={() => openInNewTab("https://www.swfdocs.com?FV=1618")}
+                className="px-4 sm:px-6 py-3 border border-white hover:border-[#007EA7] text-white rounded-lg hover:bg-[#007EA7] hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-opacity-50"
+              >
+                Securely Upload Paystubs or W-2s
               </button>
               <Link
                 to="/"

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { database, ref, push } from "../firebase/firebase";
 import ProgressBar from "../components/PrequalificationForm/ProgressBar";
 import FirstInfoStep from "../components/PrequalificationForm/FirstInfoStep";
 import ButtonGroup from "../components/PrequalificationForm/ButtonGroup";
@@ -113,10 +114,21 @@ const PrequalificationForm = () => {
   const handleSubmit = async () => {
     if (validateStep()) {
       setIsSubmitting(true);
+      console.log("Starting form submission process...");
 
       try {
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        // Create a submission object with a server timestamp
+        const submissionData = {
+          ...formData,
+          submissionDate: new Date().toISOString(), // Use ISO string for consistent timestamp format
+        };
+        console.log("Submission data:", submissionData);
+
+        // Save the form data to Firebase Realtime Database
+        console.log("Attempting to write to Firebase at path: 'leads'");
+        const leadsRef = ref(database, "leads");
+        const result = await push(leadsRef, submissionData);
+        console.log("Document successfully written with key:", result.key);
 
         // Show success message with animation
         setShowSuccess(true);
