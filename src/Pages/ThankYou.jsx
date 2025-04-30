@@ -18,9 +18,25 @@ const ThankYou = () => {
         <div className="bg-[#1A1A1A] rounded-lg shadow-custom p-6 sm:p-8">
           {/* Success Message Animation */}
           <div className="success-animation mb-8">
-            <div className="checkmark-circle">
-              <div className="checkmark-stem"></div>
-              <div className="checkmark-kick"></div>
+            <div className="checkmark-wrapper">
+              <svg
+                className="checkmark"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 52 52"
+              >
+                <circle
+                  className="checkmark-circle"
+                  cx="26"
+                  cy="26"
+                  r="25"
+                  fill="none"
+                />
+                <path
+                  className="checkmark-check"
+                  fill="none"
+                  d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                />
+              </svg>
             </div>
           </div>
 
@@ -137,67 +153,63 @@ const ThankYou = () => {
           height: 120px;
         }
 
-        .checkmark-circle {
-          width: 80px;
-          height: 80px;
+        .checkmark-wrapper {
+          width: 100px;
+          height: 100px;
           position: relative;
-          display: inline-block;
+        }
+
+        .checkmark {
+          width: 100px;
+          height: 100px;
           border-radius: 50%;
-          border: 4px solid #007ea7;
-          animation: circle-fill 0.5s ease-in-out forwards;
-          opacity: 0;
+          display: block;
+          stroke-width: 2;
+          stroke: #007ea7;
+          stroke-miterlimit: 10;
+          box-shadow: inset 0px 0px 0px #007ea7;
+          animation: fill 0.4s ease-in-out 0.4s forwards,
+            scale 0.3s ease-in-out 0.9s both;
         }
 
-        .checkmark-stem {
-          position: absolute;
-          width: 8px;
-          height: 30px;
-          background-color: #007ea7;
-          left: 40px;
-          top: 22px;
-          transform: rotate(45deg) scale(0);
-          animation: stem-animation 0.4s ease-in-out 0.6s forwards;
-          border-radius: 2px;
+        .checkmark-circle {
+          stroke-dasharray: 166;
+          stroke-dashoffset: 166;
+          stroke-width: 2;
+          stroke-miterlimit: 10;
+          stroke: #007ea7;
+          fill: none;
+          animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
 
-        .checkmark-kick {
-          position: absolute;
-          width: 18px;
-          height: 8px;
-          background-color: #007ea7;
-          left: 24px;
-          top: 44px;
-          transform: rotate(45deg) scale(0);
-          animation: kick-animation 0.4s ease-in-out 0.6s forwards;
-          border-radius: 2px;
+        .checkmark-check {
+          transform-origin: 50% 50%;
+          stroke-dasharray: 48;
+          stroke-dashoffset: 48;
+          stroke-width: 3;
+          stroke: #007ea7;
+          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
         }
 
-        @keyframes circle-fill {
-          0% {
-            transform: scale(0.3);
-            opacity: 0;
-          }
+        @keyframes stroke {
           100% {
-            transform: scale(1);
-            opacity: 1;
+            stroke-dashoffset: 0;
           }
         }
 
-        @keyframes stem-animation {
-          0% {
-            transform: rotate(45deg) scale(0);
-          }
+        @keyframes scale {
+          0%,
           100% {
-            transform: rotate(45deg) scale(1);
+            transform: none;
+          }
+          50% {
+            transform: scale3d(1.1, 1.1, 1);
           }
         }
 
-        @keyframes kick-animation {
-          0% {
-            transform: rotate(45deg) scale(0);
-          }
+        @keyframes fill {
           100% {
-            transform: rotate(45deg) scale(1);
+            box-shadow: inset 0px 0px 0px 30px transparent;
           }
         }
 

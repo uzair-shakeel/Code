@@ -157,13 +157,25 @@ const PrequalificationForm = () => {
         {showSuccess && (
           <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70 success-overlay">
             <div className="bg-[#1A1A1A] rounded-lg p-8 max-w-md text-center transform success-modal">
-              <div className="success-checkmark mx-auto mb-6">
-                <div className="check-icon">
-                  <span className="icon-line line-tip"></span>
-                  <span className="icon-line line-long"></span>
-                  <div className="icon-circle"></div>
-                  <div className="icon-fix"></div>
-                </div>
+              <div className="checkmark-wrapper mx-auto mb-6">
+                <svg
+                  className="checkmark"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 52 52"
+                >
+                  <circle
+                    className="checkmark-circle"
+                    cx="26"
+                    cy="26"
+                    r="25"
+                    fill="none"
+                  />
+                  <path
+                    className="checkmark-check"
+                    fill="none"
+                    d="M14.1 27.2l7.1 7.2 16.7-16.8"
+                  />
+                </svg>
               </div>
               <h2 className="text-xl font-bold text-white mb-3">
                 Application Submitted!
@@ -246,158 +258,63 @@ const PrequalificationForm = () => {
           }
         }
 
-        .success-checkmark {
-          width: 80px;
-          height: 80px;
-          position: relative;
-        }
-
-        .success-checkmark .check-icon {
-          width: 80px;
-          height: 80px;
-          position: relative;
-          border-radius: 50%;
-          box-sizing: content-box;
-          border: 4px solid #007ea7;
-        }
-
-        .success-checkmark .check-icon::before {
-          top: 3px;
-          left: -2px;
-          width: 30px;
-          transform-origin: 100% 50%;
-          border-radius: 100px 0 0 100px;
-        }
-
-        .success-checkmark .check-icon::after {
-          top: 0;
-          left: 30px;
-          width: 60px;
-          transform-origin: 0 50%;
-          border-radius: 0 100px 100px 0;
-          animation: rotate-circle 4.25s ease-in;
-        }
-
-        .success-checkmark .check-icon::before,
-        .success-checkmark .check-icon::after {
-          content: "";
+        .checkmark-wrapper {
+          width: 100px;
           height: 100px;
-          position: absolute;
-          background: #1a1a1a;
-          transform: rotate(-45deg);
+          position: relative;
         }
 
-        .success-checkmark .check-icon .icon-line {
-          height: 5px;
-          background-color: #007ea7;
-          display: block;
-          border-radius: 2px;
-          position: absolute;
-          z-index: 10;
-        }
-
-        .success-checkmark .check-icon .icon-line.line-tip {
-          top: 46px;
-          left: 14px;
-          width: 25px;
-          transform: rotate(45deg);
-          animation: icon-line-tip 0.75s;
-        }
-
-        .success-checkmark .check-icon .icon-line.line-long {
-          top: 38px;
-          right: 8px;
-          width: 47px;
-          transform: rotate(-45deg);
-          animation: icon-line-long 0.75s;
-        }
-
-        .success-checkmark .check-icon .icon-circle {
-          top: -4px;
-          left: -4px;
-          z-index: 10;
-          width: 80px;
-          height: 80px;
+        .checkmark {
+          width: 100px;
+          height: 100px;
           border-radius: 50%;
-          position: absolute;
-          box-sizing: content-box;
-          border: 4px solid #007ea7;
+          display: block;
+          stroke-width: 2;
+          stroke: #007ea7;
+          stroke-miterlimit: 10;
+          box-shadow: inset 0px 0px 0px #007ea7;
+          animation: fill 0.4s ease-in-out 0.4s forwards,
+            scale 0.3s ease-in-out 0.9s both;
         }
 
-        .success-checkmark .check-icon .icon-fix {
-          top: 8px;
-          width: 5px;
-          left: 26px;
-          z-index: 1;
-          height: 85px;
-          position: absolute;
-          transform: rotate(-45deg);
-          background-color: #1a1a1a;
+        .checkmark-circle {
+          stroke-dasharray: 166;
+          stroke-dashoffset: 166;
+          stroke-width: 2;
+          stroke-miterlimit: 10;
+          stroke: #007ea7;
+          fill: none;
+          animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
 
-        @keyframes rotate-circle {
-          0% {
-            transform: rotate(-45deg);
-          }
-          5% {
-            transform: rotate(-45deg);
-          }
-          12% {
-            transform: rotate(-405deg);
-          }
+        .checkmark-check {
+          transform-origin: 50% 50%;
+          stroke-dasharray: 48;
+          stroke-dashoffset: 48;
+          stroke-width: 3;
+          stroke: #007ea7;
+          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+
+        @keyframes stroke {
           100% {
-            transform: rotate(-405deg);
+            stroke-dashoffset: 0;
           }
         }
 
-        @keyframes icon-line-tip {
-          0% {
-            width: 0;
-            left: 1px;
-            top: 19px;
-          }
-          54% {
-            width: 0;
-            left: 1px;
-            top: 19px;
-          }
-          70% {
-            width: 50px;
-            left: -8px;
-            top: 37px;
-          }
-          84% {
-            width: 17px;
-            left: 21px;
-            top: 48px;
-          }
+        @keyframes scale {
+          0%,
           100% {
-            width: 25px;
-            left: 14px;
-            top: 45px;
+            transform: none;
+          }
+          50% {
+            transform: scale3d(1.1, 1.1, 1);
           }
         }
 
-        @keyframes icon-line-long {
-          0% {
-            width: 0;
-            right: 46px;
-            top: 54px;
-          }
-          65% {
-            width: 0;
-            right: 46px;
-            top: 54px;
-          }
-          84% {
-            width: 55px;
-            right: 0px;
-            top: 35px;
-          }
+        @keyframes fill {
           100% {
-            width: 47px;
-            right: 8px;
-            top: 38px;
+            box-shadow: inset 0px 0px 0px 30px transparent;
           }
         }
       `}</style>
