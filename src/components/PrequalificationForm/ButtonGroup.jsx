@@ -13,17 +13,31 @@ const ButtonGroup = ({
         {currentStep > 1 && (
           <button
             onClick={handlePrevious}
-            className="px-4 sm:px-6 py-3 border border-gray-700 text-[#B3B3B3] rounded-lg hover:bg-gray-800 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-opacity-50"
+            className="px-4 sm:px-6 py-3 border border-gray-700 text-[#B3B3B3] rounded-lg hover:bg-gray-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-opacity-50 flex items-center"
             disabled={isSubmitting}
           >
+            <svg
+              className="w-4 h-4 mr-2 transform transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              ></path>
+            </svg>
             Previous
           </button>
         )}
         <button
           onClick={handleNext}
           disabled={isSubmitting}
-          className={`ml-auto px-4 sm:px-6 py-3 bg-[#007EA7] text-white rounded-lg hover:bg-opacity-90 group transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-opacity-50 ${
-            currentStep === 1 ? "w-full" : ""
+          className={`ml-auto px-4 sm:px-6 py-3 bg-[#007EA7] text-white rounded-lg group transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#007EA7] focus:ring-opacity-50 hover:bg-[#006d91] ${
+            currentStep === 1 && !currentStep > 1 ? "w-full" : ""
           } relative overflow-hidden`}
         >
           <span className="relative z-10 flex items-center justify-center">
@@ -55,7 +69,7 @@ const ButtonGroup = ({
               <>
                 {currentStep === totalSteps ? "See If I Qualify" : "Next"}
                 <svg
-                  className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform"
+                  className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -71,6 +85,7 @@ const ButtonGroup = ({
               </>
             )}
           </span>
+          <span className="absolute inset-0 h-full w-full bg-white/10 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300"></span>
         </button>
       </div>
     </div>

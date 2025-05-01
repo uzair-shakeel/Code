@@ -150,6 +150,17 @@ const PrequalificationForm = () => {
   return (
     <div className="min-h-screen bg-[#0D0D0D] py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
+        {/* Welcome Intro */}
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4 font-montserrat">
+            Welcome to Your Prequalification
+          </h1>
+          <p className="text-lg text-[#B3B3B3] max-w-2xl mx-auto">
+            We're here to help you get started on your home buying journey.
+            Complete this quick form to see your mortgage options.
+          </p>
+        </div>
+
         {/* Progress Bar */}
         <ProgressBar currentStep={currentStep} totalSteps={totalSteps} />
 
@@ -191,7 +202,7 @@ const PrequalificationForm = () => {
         )}
 
         {/* Form Steps */}
-        <div className="bg-[#1A1A1A] rounded-lg shadow-lg p-4 sm:p-6">
+        <div className="bg-[#1A1A1A] rounded-lg shadow-lg p-5 sm:p-8 transition-all duration-300">
           {currentStep === 1 && (
             <FirstInfoStep
               formData={formData}
@@ -249,7 +260,7 @@ const PrequalificationForm = () => {
 
         @keyframes scaleIn {
           from {
-            transform: scale(0.8);
+            transform: scale(0.95);
             opacity: 0;
           }
           to {
@@ -259,22 +270,19 @@ const PrequalificationForm = () => {
         }
 
         .checkmark-wrapper {
-          width: 100px;
-          height: 100px;
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
           position: relative;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #007ea7;
         }
 
         .checkmark {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          display: block;
-          stroke-width: 2;
-          stroke: #007ea7;
-          stroke-miterlimit: 10;
-          box-shadow: inset 0px 0px 0px #007ea7;
-          animation: fill 0.4s ease-in-out 0.4s forwards,
-            scale 0.3s ease-in-out 0.9s both;
+          width: 100%;
+          height: 100%;
         }
 
         .checkmark-circle {
@@ -282,7 +290,7 @@ const PrequalificationForm = () => {
           stroke-dashoffset: 166;
           stroke-width: 2;
           stroke-miterlimit: 10;
-          stroke: #007ea7;
+          stroke: white;
           fill: none;
           animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
         }
@@ -292,8 +300,8 @@ const PrequalificationForm = () => {
           stroke-dasharray: 48;
           stroke-dashoffset: 48;
           stroke-width: 3;
-          stroke: #007ea7;
-          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+          stroke: white;
+          animation: stroke 0.5s cubic-bezier(0.65, 0, 0.45, 1) 0.4s forwards;
         }
 
         @keyframes stroke {
@@ -302,19 +310,11 @@ const PrequalificationForm = () => {
           }
         }
 
-        @keyframes scale {
-          0%,
-          100% {
-            transform: none;
-          }
-          50% {
-            transform: scale3d(1.1, 1.1, 1);
-          }
-        }
-
-        @keyframes fill {
-          100% {
-            box-shadow: inset 0px 0px 0px 30px transparent;
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+          .checkmark-wrapper {
+            width: 70px;
+            height: 70px;
           }
         }
       `}</style>
