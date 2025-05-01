@@ -148,7 +148,7 @@ const PrequalificationForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#0D0D0D] py-8  sm:py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         {/* Welcome Intro */}
         <div className="mb-8 text-center">
