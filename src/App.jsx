@@ -8,6 +8,7 @@ import ThankYou from "./Pages/ThankYou";
 import PrivacyPolicy from "./Pages/PrivacyPolicy";
 import PartnerReferral from "./Pages/PartnerReferral";
 import DataViewer from "./Pages/DataViewer";
+import AIAssistant from "./components/AIAssistant/AIAssistant";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <AIAssistant />
       </div>
     </Router>
   );
