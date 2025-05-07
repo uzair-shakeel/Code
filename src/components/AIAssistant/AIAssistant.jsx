@@ -20,9 +20,8 @@ const quickReplies = [
   "I'm self-employed — what should I do?",
 ];
 
-const UPLOAD_DOCS_LINK = "https://swfdocs.com?FV=1618";
-const BOOKING_LINK =
-  "https://outlook.office365.com/owa/calendar/RobertBSummersHomeLoanPreapproval@branch777.onmicrosoft.com/bookings/";
+const UPLOAD_DOCS_LINK = process.env.REACT_APP_UPLOAD_KEY;
+const BOOKING_LINK = process.env.REACT_APP_BOOKING_LINK;
 
 // Initialize OpenAI client
 // Note: In production, you should use environment variables for the API key
