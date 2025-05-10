@@ -19,6 +19,8 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_messaging_sender_id_here
 REACT_APP_FIREBASE_APP_ID=your_app_id_here
 REACT_APP_FIREBASE_MEASUREMENT_ID=your_measurement_id_here
 REACT_APP_OPENAI_API_KEY=your_openai_api_key_here
+REACT_APP_UPLOAD_DOCS_LINK=your_upload_docs_link_here
+REACT_APP_BOOKING_LINK=your_booking_link_here
 ```
 
 **Note:** Never commit your `.env` file to version control. It's already added to `.gitignore`.
@@ -62,10 +64,12 @@ The application includes an AI Assistant powered by OpenAI's GPT-3.5-Turbo model
 
 ### AI Assistant Setup
 
-1. Make sure your `.env` file includes your OpenAI API key:
+1. Make sure your `.env` file includes your OpenAI API key and important links:
 
 ```
 REACT_APP_OPENAI_API_KEY=your_openai_api_key_here
+REACT_APP_UPLOAD_DOCS_LINK=your_upload_docs_link_here
+REACT_APP_BOOKING_LINK=your_booking_link_here
 ```
 
 2. The AI Assistant is automatically integrated into all pages

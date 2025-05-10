@@ -2,14 +2,21 @@ import React, { useState, useEffect, useRef } from "react";
 import { FaComment, FaPaperPlane, FaTimes } from "react-icons/fa";
 import OpenAI from "openai";
 
+// Define links from environment variables with fallbacks
+const UPLOAD_DOCS_LINK =
+  process.env.REACT_APP_UPLOAD_DOCS_LINK || "https://swfdocs.com?FV=1618";
+const BOOKING_LINK =
+  process.env.REACT_APP_BOOKING_LINK ||
+  "https://outlook.office365.com/owa/calendar/RobertBSummersHomeLoanPreapproval@branch777.onmicrosoft.com/bookings/";
+
 const AI_SYSTEM_PROMPT = `You are the OriginatorOS™ AI Assistant, a friendly, helpful digital guide trained to assist homebuyers with FHA/VA/conventional loans and direct them through the OriginatorOS™ preapproval flow. Never use legal or industry jargon. Keep it human, clear, and supportive. Use casual and empowering language.
 
 If the user asks about PartnerUp, offer a whitepaper summary or ask them what pain point they have, and let them know we'll email them a custom excerpt.
 
 If someone says "I'm a Realtor" or "I want to partner," guide them to book a call and mention the benefits of being a referral partner — but don't share the book directly unless they're confirmed.
 
-Upload docs link: https://swfdocs.com?FV=1618  
-Booking link: https://outlook.office365.com/owa/calendar/RobertBSummersHomeLoanPreapproval@branch777.onmicrosoft.com/bookings/
+Upload docs link: ${UPLOAD_DOCS_LINK}  
+Booking link: ${BOOKING_LINK}
 
 If unsure how to help, respond:  
 "Great question — let me make sure I get you to the right step. You can start your preapproval or book a call, and I'll follow up if you need more help."`;
@@ -19,9 +26,6 @@ const quickReplies = [
   "Can I buy with low credit?",
   "I'm self-employed — what should I do?",
 ];
-
-const UPLOAD_DOCS_LINK = process.env.REACT_APP_UPLOAD_KEY;
-const BOOKING_LINK = process.env.REACT_APP_BOOKING_LINK;
 
 // Initialize OpenAI client
 // Note: In production, you should use environment variables for the API key
@@ -35,6 +39,29 @@ const DEV_MODE = true;
 
 // This is just the initial value - useFallback state will be used instead
 const INITIAL_FALLBACK_MODE = false;
+
+// Log environment variable status in development mode
+if (DEV_MODE) {
+  console.log(
+    "%c[AI Assistant] Environment Variables Check",
+    "background: #2196F3; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;"
+  );
+  
+  console.log(
+    "REACT_APP_UPLOAD_DOCS_LINK:",
+    process.env.REACT_APP_UPLOAD_DOCS_LINK ? "Defined ✓" : "Using fallback"
+  );
+  console.log(
+    "REACT_APP_BOOKING_LINK:",
+    process.env.REACT_APP_BOOKING_LINK ? "Defined ✓" : "Using fallback"
+  );
+  console.log(
+    "REACT_APP_SHOW_ADMIN_CONTROLS:",
+    process.env.REACT_APP_SHOW_ADMIN_CONTROLS === "true"
+      ? "Enabled"
+      : "Disabled"
+  );
+}
 
 // Helper function for developers to check response sources (only in DEV_MODE)
 window.checkAIResponseSources = function () {
@@ -65,10 +92,7 @@ window.checkAIResponseSources = function () {
     "%c[AI Assistant Stats]",
     "background: #2196F3; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;"
   );
-  console.log(`Total Assistant Messages: ${total}`);
-  console.log(
-    `GPT Responses: ${gptCount} (${Math.round((gptCount / total) * 100) || 0}%)`
-  );
+
   console.log(
     `Fallback Responses: ${fallbackCount} (${
       Math.round((fallbackCount / total) * 100) || 0
@@ -84,12 +108,6 @@ window.checkAIResponseSources = function () {
       Math.round((unknownCount / total) * 100) || 0
     }%)`
   );
-
-  if (unknownCount > 0) {
-    console.log(
-      "Some messages have unknown sources. This is normal for messages created before source tracking was added."
-    );
-  }
 
   return {
     total,
@@ -425,15 +443,6 @@ const AIAssistant = () => {
             "%c[AI Assistant]%c Attempting to use OpenAI GPT",
             "background: #4CAF50; color: white; padding: 2px 4px; border-radius: 2px; font-weight: bold;",
             "color: #4CAF50; font-weight: bold;"
-          );
-          console.log(
-            "API Key:",
-            process.env.REACT_APP_OPENAI_API_KEY
-              ? `exists (starts with: ${process.env.REACT_APP_OPENAI_API_KEY.substring(
-                  0,
-                  10
-                )}...)`
-              : "not found"
           );
         }
 
