@@ -46,7 +46,7 @@ if (DEV_MODE) {
     "%c[AI Assistant] Environment Variables Check",
     "background: #2196F3; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold;"
   );
-  
+
   console.log(
     "REACT_APP_UPLOAD_DOCS_LINK:",
     process.env.REACT_APP_UPLOAD_DOCS_LINK ? "Defined ✓" : "Using fallback"
