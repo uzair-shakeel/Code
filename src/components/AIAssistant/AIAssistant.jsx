@@ -1,3 +1,4 @@
+"use server";
 import React, { useState, useEffect, useRef } from "react";
 import { FaComment, FaPaperPlane, FaTimes } from "react-icons/fa";
 import OpenAI from "openai";
